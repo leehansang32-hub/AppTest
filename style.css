@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.diary-form, .diary-list {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.save-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.save-btn:active {
+    transform: translateY(0);
+}
+
+.diary-list h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.entries {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.entry {
+    background: #f8f9fa;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+    transition: transform 0.2s ease;
+}
+
+.entry:hover {
+    transform: translateX(5px);
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.entry-date {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.entry-mood {
+    font-size: 1.5rem;
+}
+
+.entry-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.entry-content {
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.delete-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #ff5252;
+}
+
+.no-entries {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .diary-form, .diary-list {
+        padding: 20px;
+    }
+}
+
+/* 스크롤바 스타일링 */
+.entries::-webkit-scrollbar {
+    width: 6px;
+}
+
+.entries::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.entries::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.entries::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 애니메이션 효과 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.entry {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 로딩 효과 */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.save-btn.loading::after {
+    content: "...";
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0%, 20% { content: "."; }
+    40% { content: ".."; }
+    60%, 100% { content: "..."; }
+}
